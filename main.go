@@ -86,17 +86,20 @@ func printBoard(board [][]byte) {
 
 // Check if the initial board is valid
 func isBoardValid(board [][]byte) bool {
-	for row := 0; row < gridSize; row++ {
-		for col := 0; col < gridSize; col++ {
-			if board[row][col] != '.' {
-				num := board[row][col]
-				board[row][col] = '.'
-				if !isValid(board, row, col, num) {
-					return false
-				}
-				board[row][col] = num
-			}
-		}
-	}
-	return true
+    for row := 0; row < gridSize; row++ {
+        for col := 0; col < gridSize; col++ {
+            if board[row][col] != '.' {
+                num := board[row][col]
+                if num < '1' || num > '9' { // Check if the character is between '1' and '9'
+                    return false
+                }
+                board[row][col] = '.'
+                if !isValid(board, row, col, num) {
+                    return false
+                }
+                board[row][col] = num
+            }
+        }
+    }
+    return true
 }
