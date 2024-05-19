@@ -15,7 +15,14 @@ func main() {
 	}
 
 	// Create the Sudoku board from input
-	board := make([][]byte, gridSize)
+	board := make([][]byte, gridSize) 
+	/* Use of 2D slice of bytes to represent the board instead of string increases memory usage and efficiency. 
+	Converting the empty spacese represesented by ',' into strings
+	makess needing allocation of exra memory. Performance is also improved as bytes are faster with a lower level of abstraction.  
+	Then there is the character encoding in which GO uses the character encoding of UTF-8 characters which ASCII characters use mmore memory.
+	Simplicity is also are more efficient as the characters are treated uniformy. And then if you wanted more flexibility to add even more rows it 
+	would be possible but then it be a whole new game.
+	*/
 	for i := range board {
 		// Each argument should be 9 characters long
 		if len(os.Args[i+1]) != gridSize {
